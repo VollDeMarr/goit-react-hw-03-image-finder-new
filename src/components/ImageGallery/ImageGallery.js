@@ -71,7 +71,12 @@ class ImageGallery extends Component {
     const { closeModal, loadMore, showModal } = this;
     return (
       <>
-        {status === 'idle' && <h2>Введіть ваш запит</h2>}
+        {status === 'idle' && (
+          <div className={s.container}>
+            <h2>Введіть ваш запит</h2>
+            <img className={s.img} src='https://uatodaynews.files.wordpress.com/2016/01/16388356_1424726200871476_1750686625721868660_n.jpg' alt='Почекун'/>
+          </div>
+        )}
         {status === 'pending' && <Loader />}
         {status === 'rejected' && <h1>{error.message}</h1>}
         <>
@@ -80,7 +85,6 @@ class ImageGallery extends Component {
           </ul>
           {status !== 'idle' && <Button onClick={loadMore} />}
         </>
-        {/* <Modal prop={items} alt="big brother is watching you"/> */}
         {isOpenModal && (
           <Modal close={closeModal}>
             <img src={modalData} alt="big brother is watching you" />
@@ -92,13 +96,3 @@ class ImageGallery extends Component {
 }
 
 export default ImageGallery;
-
-// import Fetch from '../Fetch/Fetch'
-// function ImageGallery() {
-// return (
-//   <ul className={s.ImageGallery}>
-//     <ImageGalleryItem />
-//   </ul>
-// );
-// }
-// export default ImageGallery;
